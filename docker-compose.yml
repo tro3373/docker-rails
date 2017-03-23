@@ -1,0 +1,30 @@
+mydata:
+  image: busybox
+  container_name: data
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - ./volumes/postgresql/9.6/data:/var/lib/postgresql/data:rw
+    - ./app:/app
+postgresql:
+  image: postgres:9.6
+  container_name: postgres
+  hostname: host_db
+  env_file:
+    - ./env_postgres.list
+  ports:
+    - "5432:5432"
+  volumes_from:
+    - mydata
+web:
+  build: .
+  container_name: rails
+  command: bundle exec rails s -p 3000 -b '0.0.0.0'
+  env_file:
+    - ./env_app.list
+  volumes_from:
+    - mydata
+  ports:
+    - "3000:3000"
+  links:
+    - postgresql
+
