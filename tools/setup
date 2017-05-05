@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+current_dir=$(pwd)
+script_dir=$(cd $(dirname $0); pwd)
+web_exec=$script_dir/web_exec
+
+main() {
+    local args="$@"
+    [[ -z $args ]] && args="-h"
+    for arg in "$args"; do
+        case "$arg" in
+            1) $web_exec rake webpacker:install ;;
+            2) $web_exec rails g devise:install;;
+            3) $web_exec rails g devise:views ;;
+            4) $web_exec rails g devise User ;;
+            -h|--help|*) $web_exec rake --tasks; break;;
+            # 4) $web_exec rails g controller Musics index ;;
+        esac
+    done
+}
+
+main "$@"
+
