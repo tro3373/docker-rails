@@ -60,6 +60,9 @@ db_setup:
 	docker-compose run web bundle exec rake db:setup \
 		|| docker-compose run web bundle exec rake db:migrate
 
+db_migrate:
+	docker-compose run web bundle exec rake db:migrate
+
 start:
 	docker-compose up -d && docker-compose logs
 
