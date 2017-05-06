@@ -22,12 +22,12 @@ RUN apt-get update -qq \
 
 # Install bundler
 RUN gem install bundler
-ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
-  BUNDLE_JOBS=2 \
-  BUNDLE_PATH=$APP_HOME/vendor/bundle/
 
 # Application Setting
 ENV APP_HOME /app
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
+ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
+  BUNDLE_JOBS=2 \
+  BUNDLE_PATH=$APP_HOME/vendor/bundle/
