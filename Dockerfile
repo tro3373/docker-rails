@@ -1,4 +1,4 @@
-FROM ruby:2.4.0
+FROM ruby:2.4.1
 # Rails console 上で日本語入力できるように ENV LANG C.UTF-8 を指定
 ENV LANG C.UTF-8
 
